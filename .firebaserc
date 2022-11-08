@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ingreso-egresoredux-be967": {
+      "hosting": {
+        "ingresoegresoapp": [
+          "ingreso-egresoredux-be967"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ingreso-egresoredux-be967"
+  }
+}
