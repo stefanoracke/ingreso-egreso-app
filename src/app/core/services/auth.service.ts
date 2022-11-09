@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UserI } from '../models/user.interface';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AppState } from '../store/app.reducer';
+import { Store } from '@ngrx/store';
+import * as authReducer from '../store/auth/auth.action';
 
 
 export interface SignInI{
@@ -17,11 +20,24 @@ export interface SignInI{
 })
 export class AuthService {
 
-  constructor(public auth:AngularFireAuth, private router:Router, private firestore:AngularFirestore) { }
+  constructor(public auth:AngularFireAuth, private router:Router, private firestore:AngularFirestore,private store:Store<AppState>) { }
 
   initAuthListener(){
     this.auth.authState.subscribe(fuser=>{
-      console.log(fuser)
+      // console.log(fuser)
+      if(fuser){
+        this.firestore.doc(`${fuser.uid}/usuario`).valueChanges().subscribe(firestoreUser=>{
+          console.log(firestoreUser)
+          
+          this.store.dispatch(authReducer.setUser(
+            {user:(<UserI> firestoreUser)}
+          ))
+        })
+        
+      }else{
+        this.store.dispatch(authReducer.unsetUser())
+      }
+      
     })
   }
 

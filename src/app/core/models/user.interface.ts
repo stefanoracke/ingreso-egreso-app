@@ -1,5 +1,5 @@
 export interface UserI{
-    uid: string |undefined,
-    name: string,
-    email: string 
+    uid?: string,
+    name?: string,
+    email?: string 
 }

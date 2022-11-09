@@ -42,12 +42,18 @@
               </div>
 
               <div class="form-group">
-                <button type="submit" class="btn btn-primary submit-btn btn-block" [disabled]="newUser.invalid">Crear cuenta</button>
+                <ng-template #button>
+                  <button  type="submit" class="btn btn-primary submit-btn btn-block" [disabled]="newUser.invalid || disabled">Crear cuenta</button>
+                </ng-template>
+                <button *ngIf="isLoading; else button" type="button" class="btn btn-primary submit-btn btn-block" [disabled]="true">
+                  <i class="fas fa-sync fa-spin"></i>
+                  Wait
+                </button>
               </div>
               <div class="text-block text-center my-3">
                 <span class="text-small font-weight-semibold">ya tienes una cuenta?</span>
                 <br>
-                <a routerLink="/login" class="text-black text-small">Login</a>
+                <a routerLink="/login" class="text-black text-small" >Login</a>
               </div>
             </form>
           </div>
