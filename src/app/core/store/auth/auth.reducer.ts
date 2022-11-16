@@ -3,14 +3,11 @@ import { UserI } from '../../models/user.interface';
 import { setUser, unsetUser } from './auth.action';
 
 export interface State {
-    user: UserI; 
+    user?: UserI; 
 }
 
 export const initialState: State = {
-   user: {
-    
-
-},
+   user: undefined,
 }
 
 export const _authReducer = createReducer(initialState,

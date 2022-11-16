@@ -1,34 +1,45 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card ">
           <div class="card-body">
             <h4 class="card-title">Detalle de ingreso egreso</h4>
-
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Descripción</th>
-                  <th>Monto</th>
-                  <th>Tipo</th>
-                  <th></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>Descripción</td>
-                  <td>Monto</td>
-                  <td>Tipo</td>
-                  <td>acciones</td>
-                </tr>
-              </tbody>
-
-            </table>
+            <div *ngIf="cargando; else tabla" class="d-flex justify-content-center m-4">
+              <i class="fas fa-sync fa-spin mx-2"></i>Cargando Ingresos y Egresos...
+            </div>
+            <ng-template #tabla>
+              <table class="table w-100">
+                <thead>
+                  <tr>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Tipo</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+  
+  
+                  <tr *ngFor="let item of list$.items">
+                    <td>{{item.description}}</td>
+                    <td >{{item.monto}}</td>
+                    <td [ngClass]="{'text-success':item.type == 'ingreso', 'text-danger':item.type == 'egreso'}">{{item.type}}</td>
+                    <td>
+                      <div class="d-flex justify-content-around">
+                        <button class="btn btn-primary d-flex justify-content-around"><i class="fas fa-edit "></i> Editar </button>
+                        <button class="btn btn-danger d-flex justify-content-around"><i class="fas fa-trash "></i>Eliminar </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+  
+              </table>
+            </ng-template>
+           
 
 
           </div>
         </div>
     </div>
 </div>
-  

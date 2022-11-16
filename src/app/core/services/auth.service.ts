@@ -19,6 +19,11 @@ export interface SignInI{
   providedIn: 'root'
 })
 export class AuthService {
+  private _user?:UserI
+
+  get user(){
+    return {... this._user};
+  }
 
   constructor(public auth:AngularFireAuth, private router:Router, private firestore:AngularFirestore,private store:Store<AppState>) { }
 
@@ -27,14 +32,16 @@ export class AuthService {
       // console.log(fuser)
       if(fuser){
         this.firestore.doc(`${fuser.uid}/usuario`).valueChanges().subscribe(firestoreUser=>{
-          console.log(firestoreUser)
+          
           
           this.store.dispatch(authReducer.setUser(
             {user:(<UserI> firestoreUser)}
           ))
+          this._user = (<UserI> firestoreUser)
         })
         
       }else{
+        this._user = undefined
         this.store.dispatch(authReducer.unsetUser())
       }
       
