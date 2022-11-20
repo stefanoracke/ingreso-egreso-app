@@ -21,14 +21,15 @@
                 <tbody>
   
   
-                  <tr *ngFor="let item of list$.items">
+                  <tr *ngFor="let item of list$.items|ordenarIE">
                     <td>{{item.description}}</td>
                     <td >{{item.monto}}</td>
-                    <td [ngClass]="{'text-success':item.type == 'ingreso', 'text-danger':item.type == 'egreso'}">{{item.type}}</td>
+                    <td [ngClass]="{'text-success':item.type == 'ingreso', 'text-danger':item.type == 'egreso'}" style="text-transform: capitalize;">{{item.type}}</td>
                     <td>
                       <div class="d-flex justify-content-around">
+                        
                         <button class="btn btn-primary d-flex justify-content-around"><i class="fas fa-edit "></i> Editar </button>
-                        <button class="btn btn-danger d-flex justify-content-around"><i class="fas fa-trash "></i>Eliminar </button>
+                        <button class="btn btn-danger d-flex justify-content-around" (click)="delete(item.uid)"><i class="fas fa-trash " ></i>Eliminar </button>
                       </div>
                     </td>
                   </tr>

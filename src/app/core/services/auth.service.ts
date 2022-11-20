@@ -8,6 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { AppState } from '../store/app.reducer';
 import { Store } from '@ngrx/store';
 import * as authReducer from '../store/auth/auth.action';
+import { unsetItems } from '../store/ingreso-egreso/ingreso-egreso.actions';
 
 
 export interface SignInI{
@@ -43,6 +44,7 @@ export class AuthService {
       }else{
         this._user = undefined
         this.store.dispatch(authReducer.unsetUser())
+        this.store.dispatch(unsetItems())
       }
       
     })

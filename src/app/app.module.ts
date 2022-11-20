@@ -24,7 +24,11 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './core/store/app.reducer';
+import { OrdenarIEPipe } from './core/pipes/ordenar-ie.pipe';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
+
+ 
 
 @NgModule({
   declarations: [
@@ -37,7 +41,8 @@ import { appReducers } from './core/store/app.reducer';
     FooterComponent,
     SidebarComponent,
     StatsComponent,
-    DetailsComponent
+    DetailsComponent,
+    OrdenarIEPipe
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,7 @@ import { appReducers } from './core/store/app.reducer';
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-      
+    NgApexchartsModule,
     
     
   ],

@@ -32,4 +32,7 @@ export class IngresoEgresoService {
       )
       
   }
+  deleteItem(uidItem:string){
+    return this.firestore.doc(`${this.authS.user.uid}/ingresos-egresos/items/${uidItem}`).delete()
+  }
 }
