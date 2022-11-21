@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     )
     .subscribe(
       (res)=>{
-        console.log(res)
+       
         if(res.user?.uid)
         this.ingresoegresoSubscription=  this.ingresoEgresoSvc.initIngresoEgresoListener(res.user?.uid)
           .subscribe(listIngresoEgreso=>{
@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     )
   }
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe()
-    this.ingresoegresoSubscription.unsubscribe()
+    this.userSubscription?.unsubscribe()
+    this.ingresoegresoSubscription?.unsubscribe()
   }
 
 }

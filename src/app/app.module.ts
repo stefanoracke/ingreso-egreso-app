@@ -5,17 +5,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DashboardComponent } from './views/dashboard/dashboard.component';
-import { IngresoEgresoComponent } from './views/ingreso-egreso/ingreso-egreso.component';
-import { LoginComponent } from './views/auth/login/login.component';
-import { RegisterComponent } from './views/auth/register/register.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { StatsComponent } from './views/components/stats/stats.component';
-import { DetailsComponent } from './views/components/details/details.component';
-
-
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -26,6 +15,9 @@ import { StoreModule } from '@ngrx/store';
 import { appReducers } from './core/store/app.reducer';
 import { OrdenarIEPipe } from './core/pipes/ordenar-ie.pipe';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { AuthModule } from './views/auth/auth.module';
+import { SharedModule } from './shared/shared.module';
+import { ComponentsDashboardModule } from './views/components/components-dashboard.module';
 
 
  
@@ -33,19 +25,14 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    IngresoEgresoComponent,
-    LoginComponent,
-    RegisterComponent,
-    NavbarComponent,
-    FooterComponent,
-    SidebarComponent,
-    StatsComponent,
-    DetailsComponent,
-    OrdenarIEPipe
+    
   ],
   imports: [
     BrowserModule,
+
+
+    AuthModule,
+
     AppRoutingModule,
     ReactiveFormsModule,
     FirestoreModule,
@@ -57,7 +44,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-    NgApexchartsModule,
+    
     
     
   ],

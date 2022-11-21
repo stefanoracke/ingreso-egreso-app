@@ -30,7 +30,7 @@ export class AuthService {
 
   initAuthListener(){
     this.auth.authState.subscribe(fuser=>{
-      // console.log(fuser)
+      
       if(fuser){
         this.firestore.doc(`${fuser.uid}/usuario`).valueChanges().subscribe(firestoreUser=>{
           

@@ -33,24 +33,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     })
     this.uiSubscription = this.store.select('ui').subscribe(ui=>{
       this.loading = ui.isLoading;
-      console.log('cargando subs')
+      
     })
   }
 
   signIn(){
    this.store.dispatch(uiActions.isLoading())
-// Swal.fire({
-//   title: 'Waiting for redirect',
-  
-//   didOpen: () => {
-//     Swal.showLoading()
-    
-//   },
-  
-// });
+
     this.auth.signIn(this.userAuth.value).then(res=>{
-      console.log(res)
-      // Swal.close();
+      
       this.store.dispatch(uiActions.stopLoading())
       this.router.navigate([''])
     }).catch(err=>{
@@ -66,7 +57,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.uiSubscription.unsubscribe();
+    this.uiSubscription?.unsubscribe();
   }
 
 

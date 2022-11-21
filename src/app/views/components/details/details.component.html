@@ -3,12 +3,16 @@
     <div class="col-12">
         <div class="card ">
           <div class="card-body">
-            <h4 class="card-title">Detalle de ingreso egreso</h4>
+            <div class="d-flex justify-content-between">
+              <h4 class="title">Detalle de ingreso egreso</h4>
+              <button class="btn btn-success" routerLink="/ingreso-egreso">+ Agregar otro ingreso/egreso</button>
+            </div>
+            
             <div *ngIf="cargando; else tabla" class="d-flex justify-content-center m-4">
               <i class="fas fa-sync fa-spin mx-2"></i>Cargando Ingresos y Egresos...
             </div>
             <ng-template #tabla>
-              <table class="table w-100">
+              <table class="table w-100 mt-4">
                 <thead>
                   <tr>
                     <th>Descripción</th>

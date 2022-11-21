@@ -14,6 +14,7 @@ import {
 import { filter, Subscription } from 'rxjs';
 import { IngresoEgresoI } from 'src/app/core/models/ingreso-egreso.interface';
 import { AppState } from 'src/app/core/store/app.reducer';
+import { SteteLazyIngreso } from 'src/app/core/store/ingreso-egreso/ingreso-egreso.reducer';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -46,7 +47,7 @@ export class StatsComponent implements OnInit, OnDestroy {
   percentIngreso = 0
   ingresoSubscription!:Subscription
 
-  constructor(private store:Store<AppState>) {
+  constructor(private store:Store<SteteLazyIngreso>) {
    
   }
   
@@ -69,7 +70,7 @@ export class StatsComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy(): void {
-    this.ingresoSubscription.unsubscribe()
+    this.ingresoSubscription?.unsubscribe()
   }
 
   makeChart(){
@@ -133,7 +134,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       }
       
    }
-   console.log(this.ingresos)
+   
   }
 
 }
